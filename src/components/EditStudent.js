@@ -8,8 +8,10 @@ function EditStudent()
     const {id} =  useParams();
 
     const [data,setData] = useState({name:"",email:"",rollNo:""});
+    const [newData, setNewData] = useState([]);
+
     useEffect(()=>{
-        Axios.get("https://crud-backend-gtuc.onrender.com/studentRoute/update-student/"+id)
+        Axios.get("http://localhost:4000/studentRoute/update-student/"+id)
         .then((res)=>{
             if(res.status === 200){
                 const {name,email, rollNo} = res.data;
@@ -20,12 +22,28 @@ function EditStudent()
         })
         .catch((err)=>alert(err))
     },[id]);
+
+    const getState = (childData) =>{
+        setNewData(childData);
+    }
+
+    const handleSubmit = () => {
+        const data = {name:newData[0], email:newData[1], rollNo:newData[2]}
+        Axios.put("http://localhost:4000/studentRoute/update-student/"+id, data)
+        .then((res)=>{
+            if(res.status === 200)
+                alert("Record updated successfully");
+            else
+                Promise.reject();
+        })
+        .catch((err)=>alert(err))
+    }
+
     return (
-        <form>
-            <StudentForm nameValue={data.name} emailValue={data.email}
+        <form onSubmit={handleSubmit}>
+            <StudentForm getState={getState} nameValue={data.name} emailValue={data.email}
                 rollNoValue={data.rollNo} />
         </form>
     )
 }
 export default EditStudent;
-
