@@ -42,7 +42,7 @@ function EditStudent()
     return (
         <form onSubmit={handleSubmit}>
             <StudentForm getState={getState} nameValue={data.name} emailValue={data.email}
-                rollNoValue={data.rollNo} />
+              Edit   rollNoValue={data.rollNo} />
         </form>
     )
 }

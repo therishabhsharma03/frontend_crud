@@ -1,6 +1,7 @@
 import { useState } from "react";
 import StudentForm from "./StudentForm";
 import Axios from "axios";
+import CreateStudent from './CreateStudent';
 
 function CreateStudent()
 {
@@ -23,7 +24,7 @@ function CreateStudent()
     }
     return (
         <form onSubmit={handleSubmit}>
-            <StudentForm getState={getState} />
+          Create Student  <StudentForm getState={getState} />
         </form>
     )
 }
