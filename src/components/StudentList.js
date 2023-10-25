@@ -6,7 +6,7 @@ function StudentList() {
     const [arr, setArr] = useState([]);
 
     useEffect(() => {
-        Axios.get("https://crud-backend-gtuc.onrender.com/studentRoute")
+        Axios.get("http://localhost:4000/studentRoute")
             .then((res) => {
                 if (res.status === 200)
                     setArr(res.data)
@@ -42,3 +42,4 @@ function StudentList() {
     )
 }
 export default StudentList;
+
